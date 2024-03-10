@@ -266,17 +266,14 @@ const sortCitiesArray = (arr) => {
  *    "Poland" => ["Lodz"]
  *   }
  */
-const group = (array, keySelector, valueSelector) => {
-  const resultMap = new Map();
-  const keys = [...new Set(array.map((item) => keySelector(item)))];
-  const values = keys.map((key) =>
-    array
-      .filter((element) => Object.values(element).includes(key))
-      .map((item) => valueSelector(item))
-  );
-  keys.forEach((property, index) => resultMap.set(property, values[index]));
-  return resultMap;
-};
+const group = (array, keySelector, valueSelector) =>
+  array.reduce((acc, cur) => {
+    const [key, value] = [keySelector(cur), valueSelector(cur)];
+    const map = acc.get(key);
+    if (!map) acc.set(key, []);
+    acc.get(key).push(value);
+    return acc;
+  }, new Map());
 
 /**
  * Css selectors builder
