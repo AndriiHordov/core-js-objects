@@ -33,17 +33,13 @@ function shallowCopy(obj) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(objects) {
-  const result = {};
-  objects.forEach((object) => {
-    const keys = Object.entries(object);
-    for (let i = 0; i < keys.length; i += 1) {
-      const [key, value] = keys[i];
-      result[key] = result[key] ? result[key] + value : value;
-    }
-  });
-  return result;
-}
+const mergeObjects = (objects) =>
+  objects.reduce((acc, object) => {
+    Object.entries(object).forEach(([key, value]) => {
+      acc[key] = acc[key] ? acc[key] + value : value;
+    });
+    return acc;
+  }, {});
 
 /**
  * Removes a properties from an object.
