@@ -200,9 +200,8 @@ const getJSON = (obj) => JSON.stringify(obj);
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
-}
+const fromJSON = (proto, json) =>
+  Object.setPrototypeOf(JSON.parse(json), proto);
 
 /**
  * Sorts the specified array by country name first and city name
