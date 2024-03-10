@@ -229,9 +229,12 @@ const fromJSON = (proto, json) =>
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
-}
+const sortCitiesArray = (arr) => {
+  return arr.sort((a, b) => {
+    const prop = a.country === b.country ? 'city' : 'country';
+    return a[prop].localeCompare(b[prop]);
+  });
+};
 
 /**
  * Groups elements of the specified array by key.
