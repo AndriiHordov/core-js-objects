@@ -72,9 +72,8 @@ function removeProperties(obj, keys) {
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 2}) => true
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 3}) => false
  */
-function compareObjects(/* obj1, obj2 */) {
-  throw new Error('Not implemented');
-}
+const compareObjects = (obj1, obj2) =>
+  JSON.stringify(obj1) === JSON.stringify(obj2);
 
 /**
  * Checks if the source object is empty.
